@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10; //salt가 몇글자인지
 var jwt = require('jsonwebtoken');
 
-
 const userSchema = mongoose.Schema({
     name: {
         type: String,
@@ -64,7 +63,6 @@ userSchema.methods.comparePassword = function(plainPassword, cb) {
             cb(null, isMatch)
     })
 }
-
 
 userSchema.methods.generateToken = function(cb) {
     
