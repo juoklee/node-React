@@ -3,9 +3,9 @@ const app = express()
 const port = 5000
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
 const config = require("./config/key");
 
+const { auth } = require("./middleware/auth");
 const { User } = require("./models/User");
 
 //application/x-www-form-urlencoded
@@ -28,7 +28,7 @@ app.get('/', (req, res) => {res.send('Hello World! 안녕하세요~')})
 
 
 //register 라우터
-app.post('/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
     //회원 가입할 때 필요한 정보들을 client에서 가져오면 
     //그 데이터를 데이터베이스에 넣어준다.
     const user = new User(req.body)
@@ -44,10 +44,10 @@ app.post('/register', (req, res) => {
 
 
 //login 라우터
-app.post('/login', (req, res) => {
+app.post('/api/users/login', (res, req) => {
 
     //요청된 이메일을 데이터베이스에서 있는지 찾는다.
-    User.findOne({ email: req.body.email }, (err, user) => {
+    User.findOne( {email: req.body.email }, (err, user) => {
         if (!user) {
             return res.json({
                 loginSuccess: false,
@@ -76,6 +76,42 @@ app.post('/login', (req, res) => {
         })
     })
 })
+
+
+
+
+//auth 라우터
+app.get('/api/users/auth', auth , (res, req) => {
+
+    //여기까지 미들웨어를 통과해 왔다는 얘기는 Authentication이 True라는 말
+    req.status(200).json({
+        _id: req.user._id,
+        isAdmin: req.user.role === 0 ? false : true, //role 0: 일반유저, 0아니면: 관리자
+        isAuth: true,
+        email: req.user.email,
+        name: req.user.name,
+        lastname: req.user.lastname,
+        role: req.user.role,
+        image: req.user.image
+    })
+})
+
+
+
+//logout 라우터
+app.get('/api/users/logout', auth, (req, res) => {
+    //auth 미들웨어에서 가져와서 데이터를 찾는다
+    User.findOneAndUpdate({ _id: req.user._id },
+        //토큰을 지워준다
+        { token: "" }
+        , (err, user) => {
+            if (err) return res.json({ success: false, err });
+            return res.status(200).send({
+                success: true
+            })
+        })
+})
+
 
 
 
