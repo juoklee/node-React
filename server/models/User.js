@@ -35,6 +35,7 @@ const userSchema = mongoose.Schema({
     }
 })
 
+
 //user정보를 저장하기 전에 password 암호화
 userSchema.pre('save', function (next) {
     var user = this;
@@ -56,6 +57,7 @@ userSchema.pre('save', function (next) {
 
 })
 
+
 userSchema.methods.comparePassword = function(plainPassword, cb) {
     //plainPassword 1234567, 암호화된 비밀번호 $2b$10$6Sypy7cLx2yrUM1YW1NRjexpiWnWUjlgj.mskvboxmcpJZanUCAKa
     bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
@@ -64,8 +66,8 @@ userSchema.methods.comparePassword = function(plainPassword, cb) {
     })
 }
 
+
 userSchema.methods.generateToken = function(cb) {
-    
     var user = this;
 
     //jsonwebtoekn을 이용해서 token 생성하기
