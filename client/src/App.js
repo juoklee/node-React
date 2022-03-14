@@ -15,9 +15,9 @@ function App() {
   return (
     <BrowserRouter>
         <Routes>
-          <Route exact path="/" component={ LandingPage } />
-          <Route exact path="/login" component={ LoginPage } />
-          <Route exact path="/register" component={ RegisterPage } />
+          <Route exact path="/" element={ <LandingPage/ > }></Route>
+          <Route exact path="/login" element={ <LoginPage/> }></Route>
+          <Route exact path="/register" element={ <RegisterPage/> }></Route>
         </Routes>
     </BrowserRouter>
   );
