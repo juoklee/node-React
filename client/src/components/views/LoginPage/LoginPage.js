@@ -1,14 +1,21 @@
-import { Axios } from 'axios'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../_actions/user_action';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage(props) {
+    
+    let navigate = useNavigate();
+
+
+    //dispatch
     const dispatch = useDispatch();
 
+    //state, 처음state = ""
     const [Email, setEmail] = useState("")
     const [Password, setPassword] = useState("")
 
+    //event 발생할 때 state를 변경
     const onEmailHandler = (event) => {
         setEmail(event.currentTarget.value)
     }
@@ -17,23 +24,28 @@ function LoginPage(props) {
         setPassword(event.currentTarget.value)
     }
 
+    //login 버튼 
     const onSubmitHandler = (event) => {
+        //페이지 refresh 방지
         event.preventDefault();
 
-        console.log('Email', Email)
-        console.log('Password', Password)
+        // console.log('Email', Email)
+        // console.log('Password', Password)
 
+        //보내줄 data
         let body = {
             email: Email,
-            Password: Password
+            password: Password
         }
 
+        //'loginUser'라는 action
         dispatch(loginUser(body))
             .then(response => {
                 if(response.payload.loginSuccess) {
-                    props.history.push('/')
+                    navigate('/home') //v.6
+                    // props.history.push('/') //v.5
                 } else {
-                    alert('Error')
+                    alert('Error!!')
                 }
             })
 
