@@ -4,7 +4,7 @@ import {
     REGISTER_USER
 } from './types';
 
-//로그인
+//로그인 부분
 export function loginUser(dataToSubmit) {
 
     //서버에서 받은 data를 request에 저장
