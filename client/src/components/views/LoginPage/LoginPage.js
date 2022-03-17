@@ -3,11 +3,7 @@ import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../_actions/user_action';
 import { useNavigate } from 'react-router-dom';
 
-function LoginPage(props) {
-    
-    let navigate = useNavigate();
-
-
+function LoginPage() {
     //dispatch
     const dispatch = useDispatch();
 
@@ -24,7 +20,9 @@ function LoginPage(props) {
         setPassword(event.currentTarget.value)
     }
 
-    //login 버튼 
+
+    let navigate = useNavigate();
+
     const onSubmitHandler = (event) => {
         //페이지 refresh 방지
         event.preventDefault();
@@ -42,14 +40,12 @@ function LoginPage(props) {
         dispatch(loginUser(body))
             .then(response => {
                 if(response.payload.loginSuccess) {
-                    navigate('/home') //v.6
+                    navigate('/') //v.6
                     // props.history.push('/') //v.5
                 } else {
                     alert('Error!!')
                 }
             })
-
-        
     }
 
 
