@@ -30,6 +30,7 @@ function RegisterPage() {
         setComfirmPassword(event.currentTarget.value)
     }
 
+    //v.6 navigate
     let navigate = useNavigate();
 
     const onSubmitHandler = (event) => {
@@ -58,13 +59,6 @@ function RegisterPage() {
                 }
             })
     }
-
-
-
-
-
-
-
 
     return (
         <div style={{
