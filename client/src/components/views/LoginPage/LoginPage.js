@@ -39,6 +39,8 @@ function LoginPage() {
         //'loginUser'라는 action
         dispatch(loginUser(body))
             .then(response => {
+                console.log(response.data)
+
                 if(response.payload.loginSuccess) {
                     navigate('/') //v.6
                     // props.history.push('/') //v.5
@@ -54,7 +56,9 @@ function LoginPage() {
             display: 'flex', justifyContent: 'center', alignItems: 'center'
             , width: '100%', height: '100vh'
         }}>
-            <form style={{ display: 'flex', flexDirection: 'column' }} onSubmit={onSubmitHandler}>
+            <form style={{ display: 'flex', flexDirection: 'column' }} 
+                onSubmit={onSubmitHandler}
+            >
                 <label>Email</label>
                 <input type="email" value={Email} onChange={onEmailHandler} />
                 <label>Password</label>
@@ -63,9 +67,7 @@ function LoginPage() {
                 <button type="submit">
                     Login
                 </button>
-            </form>
-
-            
+            </form>   
         </div>
     )
 }

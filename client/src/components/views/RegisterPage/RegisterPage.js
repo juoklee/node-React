@@ -51,7 +51,8 @@ function RegisterPage() {
         //'registerUser'라는 action 보내기
         dispatch(registerUser(body))
             .then(response => {
-                //console.log('response 보냄')
+                console.log(response.data)
+
                 if(response.payload.success) {
                     navigate("/login")
                 } else {
@@ -82,7 +83,7 @@ function RegisterPage() {
                 <input type="password" value={ComfirmPassword} onChange={onComfirmPasswordHandler} />
                 
                 <br/>
-                <button>
+                <button type="submit">
                     회원가입
                 </button>
             </form>
