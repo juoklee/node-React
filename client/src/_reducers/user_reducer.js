@@ -1,6 +1,7 @@
 import {
     LOGIN_USER,
-    REGISTER_USER
+    REGISTER_USER,
+    LOGOUT_USER
 } from '../_actions/types';
 
 

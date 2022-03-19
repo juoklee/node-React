@@ -39,7 +39,7 @@ function LoginPage() {
         //'loginUser'라는 action
         dispatch(loginUser(body))
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
 
                 if(response.payload.loginSuccess) {
                     navigate('/') //v.6

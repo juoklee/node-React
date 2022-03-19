@@ -51,7 +51,7 @@ function RegisterPage() {
         //'registerUser'라는 action 보내기
         dispatch(registerUser(body))
             .then(response => {
-                console.log(response.data)
+                // console.log(response.data)
 
                 if(response.payload.success) {
                     navigate("/login")

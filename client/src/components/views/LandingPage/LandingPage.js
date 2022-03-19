@@ -16,14 +16,13 @@ function LandingPage() {
     let navigate = useNavigate();
 
     const OnclickHandler = () => {
-        axios.get('/api/users/logout')
+        axios.get('api/users/logout')
         .then(response => {
-            console.log(response.data)
-
+            // console.log(response.data)
             if(response.data.success) {
                 navigate('/login')
             } else {
-                alert('로그아웃 실패')
+                alert('Failed to logout')
             }
         })
     }

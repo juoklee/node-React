@@ -1,7 +1,7 @@
 import axios from "axios";
 import {
     LOGIN_USER,
-    REGISTER_USER
+    REGISTER_USER,
 } from './types';
 
 //로그인 부분
