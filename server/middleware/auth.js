@@ -13,7 +13,7 @@ let auth = (req, res, next) => {
         if (!user) return res.json({ isAuth: false, error: true })
         //유저가 있으면 인증 Okay
         req.token = token;
-        req.uesr = user;
+        req.user = user;
         next();
 
     })

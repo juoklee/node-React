@@ -38,7 +38,7 @@ export function registerUser(dataToSubmit) {
 export function auth() {
 
     //서버에서 받은 data를 request에 저장
-    const request = axios.get('/api/users/auth', dataToSubmit)
+    const request = axios.get('/api/users/auth')
         .then(response => response.data)
 
     //type, response
