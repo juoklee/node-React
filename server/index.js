@@ -7,7 +7,7 @@ const { auth } = require("./middleware/auth");
 const { User } = require("./models/User");
 
 //application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //application/json
 app.use(bodyParser.json());
@@ -104,11 +104,11 @@ app.get('/api/users/logout', auth, (req, res) => {
         //토큰을 지워준다
         { token: "" }
         , (err, user) => {
-            if (err) return res.json({ success: false, err });
-            return res.status(200).send({
-                success: true
-            })
-        })
+          if (err) return res.json({ success: false, err });
+          return res.status(200).send({
+            success: true
+          })
+    })
 })
 
 

@@ -2,6 +2,7 @@ import axios from "axios";
 import {
     LOGIN_USER,
     REGISTER_USER,
+    AUTH_USER
 } from './types';
 
 //로그인 부분
@@ -28,6 +29,21 @@ export function registerUser(dataToSubmit) {
     //type, response
     return {
         type: REGISTER_USER,
+        payload: request
+    }
+}
+
+
+//인증체크
+export function auth() {
+
+    //서버에서 받은 data를 request에 저장
+    const request = axios.get('/api/users/auth', dataToSubmit)
+        .then(response => response.data)
+
+    //type, response
+    return {
+        type: AUTH_USER,
         payload: request
     }
 }

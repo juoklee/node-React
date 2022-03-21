@@ -1,7 +1,7 @@
 import {
     LOGIN_USER,
     REGISTER_USER,
-    LOGOUT_USER
+    AUTH_USER
 } from '../_actions/types';
 
 
@@ -15,6 +15,10 @@ export default function (state = {}, action) {
         //회원가입
         case REGISTER_USER:
             return {...state, register: action.payload }
+            break;
+        //인증체크
+        case AUTH_USER:
+            return {...state, userData: action.payload }
             break;
         //그 외 현재 state 유지
         default:
